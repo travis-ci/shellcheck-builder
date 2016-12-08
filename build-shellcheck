@@ -7,13 +7,13 @@ main() {
   local version="${1}"
   local basedir="${PWD}"
 
-  pushd "${shellcheck_clone}"
-  docker build -t shellcheck -f Dockerfile_builder .
-  docker run --rm -it -v "${basedir}:/mnt" shellcheck
-  popd &>/dev/null
+  docker build -t shellcheck .
+  echo "Exporting artifacts to ${basedir}"
+  docker run --rm -it -v "${basedir}:/mnt" shellcheck \
+    'cp -v /root/.cabal/bin/shellcheck /mnt/shellcheck'
 
   mkdir -p "build/shellcheck-${version}"
-  cp -v "${basedir}/bin/shellcheck" "build/shellcheck-${version}/shellcheck"
+  cp -v "${basedir}/shellcheck" "build/shellcheck-${version}/shellcheck"
 
   pushd "build/shellcheck-${version}"
   sha256sum shellcheck >SHA256SUMS
