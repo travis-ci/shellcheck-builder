@@ -10,7 +10,7 @@ main() {
   docker build -t shellcheck .
   echo "Exporting artifacts to ${basedir}"
   docker run --rm -it -v "${basedir}:/mnt" shellcheck \
-    'cp -v /root/.cabal/bin/shellcheck /mnt/shellcheck'
+    cp -v /root/.cabal/bin/shellcheck /mnt/shellcheck
 
   mkdir -p "build/shellcheck-${version}"
   cp -v "${basedir}/shellcheck" "build/shellcheck-${version}/shellcheck"
