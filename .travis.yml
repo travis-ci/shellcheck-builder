@@ -1,6 +1,7 @@
 language: bash
 dist: trusty
 sudo: required
+env: VERSION=v0.4.5
 script:
 - 'export LSB_RELEASE=${LSB_RELEASE:-$(lsb_release -rs || echo ${$(sw_vers -productVersion)%*.*})}'
 - 'export OS_NAME=${OS_NAME:-$(lsb_release -is | tr "A-Z" "a-z" || echo "osx")}'
