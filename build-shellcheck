@@ -6,6 +6,7 @@ main() {
   local shellcheck_clone="${1}"
   local version="${2}"
   local basedir="${PWD}"
+  local tarball="shellcheck-${version}.tar.bz2"
 
   docker build -t shellcheck .
   echo "Exporting artifacts to ${basedir}"
@@ -20,10 +21,10 @@ main() {
   popd &>/dev/null
 
   pushd build
-  tar -cjvf "shellcheck-${version}.tar.bz2" "shellcheck-${version}"
+  tar -cjvf "${tarball}" "shellcheck-${version}"
   popd &>/dev/null
-  mv -v "build/shellcheck-${version}.tar.bz2" ./
-  stat "shellcheck-${version}.tar.bz2"
+  mv -v "build/${tarball}" ./
+  sha256sum "${tarball}" >"${tarball}.sha256sum"
 }
 
 main "$@"

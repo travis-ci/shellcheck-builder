@@ -11,5 +11,6 @@ addons:
   artifacts:
     paths:
     - shellcheck-${VERSION}.tar.bz2
+    - shellcheck-${VERSION}.tar.bz2.sha256sum
     target_paths:
     - /binaries/$OS_NAME/$LSB_RELEASE/$ARCH
