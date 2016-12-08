@@ -4,7 +4,7 @@ set -o errexit
 
 main() {
   local shellcheck_clone="${1}"
-  local version="${1}"
+  local version="${2}"
   local basedir="${PWD}"
 
   docker build -t shellcheck .
@@ -21,6 +21,7 @@ main() {
 
   pushd build
   tar -cjvf "shellcheck-${version}.tar.bz2" "shellcheck-${version}"
+  stat "shellcheck-${version}.tar.bz2"
 }
 
 main "$@"
