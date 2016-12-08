@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -o errexit
+
+main() {
+  local shellcheck_clone="${1}"
+  local version="${1}"
+  local basedir="${PWD}"
+
+  pushd "${shellcheck_clone}"
+  docker build -t shellcheck -f Dockerfile_builder .
+  docker run --rm -it -v "${basedir}:/mnt" shellcheck
+  popd &>/dev/null
+
+  mkdir -p "build/shellcheck-${version}"
+  cp -v "${basedir}/bin/shellcheck" "build/shellcheck-${version}/shellcheck"
+
+  pushd "build/shellcheck-${version}"
+  sha256sum shellcheck >SHA256SUMS
+  popd &>/dev/null
+
+  pushd build
+  tar -cjvf "shellcheck-${version}.tar.bz2" "shellcheck-${version}"
+}
+
+main "$@"

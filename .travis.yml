@@ -1,0 +1,14 @@
+language: bash
+dist: trusty
+sudo: required
+script:
+- 'export LSB_RELEASE=${LSB_RELEASE:-$(lsb_release -rs || echo ${$(sw_vers -productVersion)%*.*})}'
+- 'export OS_NAME=${OS_NAME:-$(lsb_release -is | tr "A-Z" "a-z" || echo "osx")}'
+- 'export ARCH=${ARCH:-$(uname -m)}'
+- make build
+addons:
+  artifacts:
+    paths:
+    - "./build/shellcheck-${VERSION}.tar.bz2"
+    target_paths:
+    - /binaries/$OS_NAME/$LSB_RELEASE/$ARCH

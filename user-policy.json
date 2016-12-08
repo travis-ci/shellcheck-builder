@@ -1,0 +1,20 @@
+{
+  "UserName": "shellcheck-builder",
+  "PolicyName": "travis-blue-public-shelcheck-builder-putobjects",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "s3:PutObject",
+          "s3:PutObjectAcl"
+        ],
+        "Resource": [
+          "arn:aws:s3:::travis-blue-public/*"
+        ],
+        "Effect": "Allow",
+        "Sid": "Stmt1471896475000"
+      }
+    ]
+  }
+}
