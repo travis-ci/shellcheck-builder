@@ -4,7 +4,7 @@ DOCKER ?= docker
 GIT ?= git
 
 build: src/shellcheck/.git
-	./build-shellcheck "$(dir $@)" "$(VERSION)"
+	./build-shellcheck src/shellcheck "$(VERSION)"
 
 src/shellcheck/.git:
 	mkdir -p src
