@@ -10,6 +10,6 @@ script:
 addons:
   artifacts:
     paths:
-    - "./build/shellcheck-${VERSION}.tar.bz2"
+    - shellcheck-${VERSION}.tar.bz2
     target_paths:
     - /binaries/$OS_NAME/$LSB_RELEASE/$ARCH

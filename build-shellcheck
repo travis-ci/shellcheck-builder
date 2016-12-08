@@ -21,6 +21,8 @@ main() {
 
   pushd build
   tar -cjvf "shellcheck-${version}.tar.bz2" "shellcheck-${version}"
+  popd &>/dev/null
+  mv -v "build/shellcheck-${version}.tar.bz2" ./
   stat "shellcheck-${version}.tar.bz2"
 }
 
