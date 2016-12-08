@@ -6,7 +6,7 @@ script: make build
 addons:
   artifacts:
     paths:
-    - shellcheck-${VERSION}.tar.bz2
-    - shellcheck-${VERSION}.tar.bz2.sha256sum
+    - "shellcheck-${VERSION##v}.tar.bz2"
+    - "shellcheck-${VERSION##v}.tar.bz2.sha256sum"
     target_paths:
     - /binaries/ubuntu/14.04/x86_64
