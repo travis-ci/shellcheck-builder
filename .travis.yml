@@ -2,15 +2,11 @@ language: bash
 dist: trusty
 sudo: required
 env: VERSION=v0.4.5
-script:
-- 'export LSB_RELEASE=${LSB_RELEASE:-$(lsb_release -rs || echo ${$(sw_vers -productVersion)%*.*})}'
-- 'export OS_NAME=${OS_NAME:-$(lsb_release -is | tr "A-Z" "a-z" || echo "osx")}'
-- 'export ARCH=${ARCH:-$(uname -m)}'
-- make build
+script: make build
 addons:
   artifacts:
     paths:
     - shellcheck-${VERSION}.tar.bz2
     - shellcheck-${VERSION}.tar.bz2.sha256sum
     target_paths:
-    - /binaries/$OS_NAME/$LSB_RELEASE/$ARCH
+    - /binaries/ubuntu/14.04/x86_64
